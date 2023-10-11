@@ -130,30 +130,37 @@ class ProximaClaseCard extends StatelessWidget {
                   children: [
                     Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text(
-                            "Nombre Profesor",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 15,
-                            ),
-                          ),
-                          Container(
-                            alignment: Alignment.centerLeft,
-                            child: Text(
-                              clase.profesorNombre!,
-                              style: const TextStyle(
+                      child: IntrinsicWidth(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              "Nombre Profesor",
+                              style: TextStyle(
                                 color: Colors.white,
-                                fontWeight: FontWeight.normal,
+                                fontWeight: FontWeight.bold,
                                 fontSize: 15,
                               ),
                             ),
-                          ),
-                        ],
+                            Container(
+                              alignment: Alignment.centerLeft,
+     
+                              width: MediaQuery.of(context).size.width / 2,
+                              child: Text(
+                                clase.profesorNombre!,
+                                overflow: TextOverflow.ellipsis,
+                                softWrap: true,
+                                maxLines: 2,
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.normal,
+                                  fontSize: 15,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ],
