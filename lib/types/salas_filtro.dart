@@ -1,15 +1,11 @@
 class SalasFiltro {
-  SalasDias dia = SalasDias.hoy;
+  SalasDias dia;
   int? seccion;
-  String? busqueda;
+  String busqueda;
 
-  SalasFiltro({this.dia = SalasDias.hoy, this.seccion, this.busqueda});
+  SalasFiltro({this.dia = SalasDias.hoy, this.seccion, this.busqueda=""});
 
-  SalasFiltro.fromJson(Map<String, dynamic> json) {
-    dia = json['dia'];
-    seccion = json['seccion'];
-    busqueda = json['busqueda'];
-  }
+
 }
 
 enum SalasDias {

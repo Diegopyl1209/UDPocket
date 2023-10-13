@@ -66,12 +66,18 @@ class ProximaClaseCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      clase.asignatura!,
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
+                    Container(
+                      width: MediaQuery.of(context).size.width / 1.5,
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        clase.asignatura!,
+                        overflow: TextOverflow.ellipsis,
+                        softWrap: true,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                        ),
                       ),
                     ),
                     Container(
@@ -146,7 +152,7 @@ class ProximaClaseCard extends StatelessWidget {
                             Container(
                               alignment: Alignment.centerLeft,
      
-                              width: MediaQuery.of(context).size.width / 2,
+                              width: MediaQuery.of(context).size.width / 1.5,
                               child: Text(
                                 clase.profesorNombre!,
                                 overflow: TextOverflow.ellipsis,

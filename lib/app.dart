@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:udpocket/providers/home_page_provider.dart';
 import 'package:udpocket/screens/home/home.dart';
 import 'package:udpocket/screens/perfil.dart';
+import 'package:udpocket/screens/salas/salas.dart';
 
 class App extends StatefulWidget {
   const App({Key? key}) : super(key: key);
@@ -18,7 +19,7 @@ class _AppState extends State<App> with AutomaticKeepAliveClientMixin<App> {
 
   static const int _homeIndex = 1;
   late final List<Widget> _pages = [
-    const Text('Salas'),
+    const Salas(),
     const HomePage(),
     const PerfilPage(),
   ];

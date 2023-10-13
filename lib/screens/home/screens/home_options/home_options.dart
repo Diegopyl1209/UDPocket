@@ -108,14 +108,15 @@ class HomeOptions extends StatelessWidget {
       'nombre': 'Calendario udp',
       'icon': Icons.calendar_month,
       'color': Colors.red,
-      'homeIndex': 4,
+      'homeIndex': 3,
     },
+    /*
     {
       'nombre': 'Ramos',
       'icon': Icons.book,
       'color': Colors.green,
-      'homeIndex': 1, //TODO: cambiar esto
-    },
+      'homeIndex': 3, //TODO: cambiar esto
+    },*/
   ];
 
   Widget _buildSecciones(BuildContext context) {
