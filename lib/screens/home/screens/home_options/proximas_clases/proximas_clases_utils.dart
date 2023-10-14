@@ -20,10 +20,30 @@ class ProximasClasesUtils {
     return false;
   }
 
-  static Future<ProximasClasesResponse> getProximasClases() async {
+  static Future<ProximasClasesData> getProximasClases() async {
     var response =
         await udpApiRequest(UdpApiMethod.get, UdpApiPath.proximasClases);
+    bool error = false;
+    bool empty = false;
+    if (response.statusCode == 204) {
+      empty = true;
+    } else if (response.statusCode != 200) {
+      error = true;
+    }
 
-    return ProximasClasesResponse.fromJson(response.data);
+    return ProximasClasesData(error: error, empty: empty, data:ProximasClasesResponse.fromJson(response.data));
   }
+}
+
+class ProximasClasesData {
+  bool error;
+  bool empty;
+
+  ProximasClasesResponse data;
+
+  ProximasClasesData({
+    required this.error,
+    required this.empty,
+    required this.data,
+  });
 }

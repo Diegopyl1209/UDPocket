@@ -21,6 +21,7 @@ class _ProximasClasesState extends State<ProximasClases>
     return FutureBuilder(
       future: ProximasClasesUtils.getProximasClases(),
       builder: (context, snapshot) {
+
         if (snapshot.hasError) {
           return const Center(
             child: Text("Error al cargar la información"),
@@ -29,10 +30,20 @@ class _ProximasClasesState extends State<ProximasClases>
           return const Center(
             child: CircularProgressIndicator(),
           );
-        } else {
-          return _buildProximasClases(
-              context, snapshot.data as ProximasClasesResponse);
         }
+
+          if (snapshot.data!.empty ) {
+            return const Center(
+              child: Text("No hay clases próximamente"),
+            );
+          }else if (snapshot.data!.error) {
+            return const Center(
+              child: Text("Error al cargar la información"),
+            );
+          }
+
+          return _buildProximasClases(
+              context, (snapshot.data as ProximasClasesData).data );
       },
     );
   }
