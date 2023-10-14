@@ -43,7 +43,7 @@ class _ProximasClasesState extends State<ProximasClases>
           }
 
           return _buildProximasClases(
-              context, (snapshot.data as ProximasClasesData).data );
+              context, (snapshot.data as ProximasClasesData).data! );
       },
     );
   }

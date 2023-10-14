@@ -32,6 +32,11 @@ Future<UdpApiResponse> udpApiRequest(
       response = await http.get(uri, headers: headers);
   }
 
+  try {
+    jsonDecode(response.body);
+  } catch (e) {
+    return UdpApiResponse(response.statusCode, {});
+  }
   return UdpApiResponse(response.statusCode, jsonDecode(response.body));
 }
 

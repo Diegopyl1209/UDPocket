@@ -24,7 +24,9 @@ class DeepLinkReciver extends StatelessWidget {
             return const App();
           }
         } else {
-          return const Text('Loading...'); //TODO: Reemplazar esto por un spinner
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
         }
       },
     );
