@@ -272,7 +272,7 @@ class TopPerfilCardState extends State<TopPerfilCard>
         border: Border.all(color: theme.scaffoldBackgroundColor, width: 5),
         image: DecorationImage(
           image: MemoryImage(decodedPhoto),
-          fit: BoxFit.fill,
+          fit: BoxFit.fitHeight,
         ),
       ),
     );

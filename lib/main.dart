@@ -9,6 +9,7 @@ import 'package:udpocket/screens/entryPoint/deeplink_reciver.dart';
 import 'package:udpocket/screens/entryPoint/login_verify.dart';
 import 'package:udpocket/utils/themes.dart';
 
+import 'providers/salas_page_provider.dart';
 import 'providers/settings_provider.dart';
 
 void main() {
@@ -17,6 +18,7 @@ void main() {
       ChangeNotifierProvider(create: (_) => HomePageProvider()),
       ChangeNotifierProvider(create: (_) => PerfilPageProvider()),
       ChangeNotifierProvider(create: (_) => SettingsProvider()),
+      ChangeNotifierProvider(create: (_) => SalasPageProvider()),
     ],
     child: const MainApp(),
   ));
@@ -71,18 +73,16 @@ final router = GoRouter(
     errorBuilder: (context, state) {
       //TODO: algunas veces go_router no funciona bien, hay que arreglarlo
       //intentar verificar el login antes de enviar algun error
-      try{
+      try {
         return _loginVerifyFlow(context, state);
-      }catch(e){
+      } catch (e) {
         return Scaffold(
-        body: Center(
-          child: Text(
-              'Error: ${state.error}'), //TODO: Cambiar esto por un pokemon o algo
-        ),
-      );
+          body: Center(
+            child: Text(
+                'Error: ${state.error}'), //TODO: Cambiar esto por un pokemon o algo
+          ),
+        );
       }
-
-
     },
     routes: [
       GoRoute(
@@ -93,8 +93,7 @@ final router = GoRouter(
       ),
     ]);
 
-
-  _loginVerifyFlow(BuildContext context, dynamic state) {
+_loginVerifyFlow(BuildContext context, dynamic state) {
   String? code = state.uri.queryParametersAll['code']?[0];
   if (code == null) {
     return const LoginVerify();

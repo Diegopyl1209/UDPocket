@@ -4,6 +4,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:udpocket/providers/perfil_page_provider.dart';
+
 import 'package:udpocket/screens/home/screens/home_options/widgets/home_seccion_card.dart';
 import 'package:udpocket/screens/home/screens/home_options/proximas_clases/proximas_clases.dart';
 import 'package:udpocket/types/info_alumno_response.dart';

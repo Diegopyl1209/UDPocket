@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:udpocket/types/salas_docencia_response.dart';
 
@@ -59,6 +57,11 @@ class SalasCard extends StatelessWidget {
                           style: const TextStyle(
                               fontSize: 16, fontWeight: FontWeight.w300),
                         ),
+                        Text(
+                          sala.section ?? '',
+                          style: const TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.w300),
+                        )
                       ],
                     ),
                   ),

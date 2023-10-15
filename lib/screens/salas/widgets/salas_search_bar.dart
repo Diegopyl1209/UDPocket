@@ -1,9 +1,6 @@
-
-
 import 'package:flutter/material.dart';
 
 class SalasSearchBar extends StatelessWidget implements PreferredSizeWidget {
-
   @override
   Size get preferredSize => const Size.fromHeight(60);
 
@@ -34,8 +31,7 @@ class SalasSearchBar extends StatelessWidget implements PreferredSizeWidget {
           border: InputBorder.none,
           //clear text button
           suffixIcon: IconButton(
-            onPressed: (){
-              controller.clear();
+            onPressed: () {
               onChanged('');
             },
             icon: const Icon(Icons.clear),
