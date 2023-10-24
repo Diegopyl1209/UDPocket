@@ -35,8 +35,9 @@ List<NodeSala> filterSalas(List<NodeSala> salas, SalasFiltro filtro,
       addSala = addSala && sala.section == filtro.seccion!.toString();
     }
     if (filtro.dia != null) {
-      if (filtro.dia.index == 8) {
+      if (filtro.dia.index == 0) {
         int dia = DateTime.now().weekday;
+        print(dia);
         if (sala.day == dia) {
           addSala = addSala && true;
         } else {
