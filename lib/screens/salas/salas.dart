@@ -65,6 +65,11 @@ class _SalasState extends State<Salas> {
   void _showFilterSheet(BuildContext context) {
     showModalBottomSheet(
         context: context,
+        isScrollControlled: true,
+        transitionAnimationController: AnimationController(
+          vsync: Navigator.of(context),
+          duration: const Duration(milliseconds: 300),
+        ),
         builder: (context) {
           return _buildFilterSheet(context);
         });
@@ -142,7 +147,9 @@ class _SalasState extends State<Salas> {
                     const Text('Sección'),
                     DropdownMenu<int?>(
                       controller: TextEditingController(
-                        text: filtro.seccion?.toString() ?? 'Todas',
+                        text: ((filtro.seccion ?? -1) == -1)
+                            ? 'Todas'
+                            : filtro.seccion!.toString(),
                       ),
                       onSelected: (value) {
                         setState(() {
@@ -156,7 +163,7 @@ class _SalasState extends State<Salas> {
                       ),
                       menuHeight: MediaQuery.of(context).size.height / 2,
                       dropdownMenuEntries: [
-                        const DropdownMenuEntry(value: null, label: 'Todas'),
+                        const DropdownMenuEntry(value: -1, label: 'Todas'),
                         for (int i = 1; i <= 20; i++)
                           DropdownMenuEntry(value: i, label: i.toString()),
                       ],

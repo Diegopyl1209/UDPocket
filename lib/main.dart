@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:provider/provider.dart';
 import 'package:udpocket/providers/home_page_provider.dart';
+import 'package:udpocket/providers/navbar_provider.dart';
 import 'package:udpocket/providers/perfil_page_provider.dart';
 import 'package:udpocket/screens/entryPoint/deeplink_reciver.dart';
 import 'package:udpocket/screens/entryPoint/login_verify.dart';
@@ -19,6 +20,7 @@ void main() {
       ChangeNotifierProvider(create: (_) => PerfilPageProvider()),
       ChangeNotifierProvider(create: (_) => SettingsProvider()),
       ChangeNotifierProvider(create: (_) => SalasPageProvider()),
+      ChangeNotifierProvider(create: (_) => NavBarProvider()),
     ],
     child: const MainApp(),
   ));

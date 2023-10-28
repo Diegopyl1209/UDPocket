@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:udpocket/providers/home_page_provider.dart';
+import 'package:udpocket/providers/navbar_provider.dart';
 import 'package:udpocket/screens/home/home.dart';
 import 'package:udpocket/screens/perfil.dart';
 import 'package:udpocket/screens/salas/salas.dart';
@@ -13,9 +14,12 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> with AutomaticKeepAliveClientMixin<App> {
-  var _selectedIndex = 1;
-  late final PageController _pageController =
-      PageController(initialPage: _selectedIndex);
+  late var _selectedIndex =
+      Provider.of<NavBarProvider>(context, listen: false).currentIndex;
+  late final PageController _pageController = Provider.of<NavBarProvider>(
+    context,
+    listen: false,
+  ).pageController;
 
   static const int _homeIndex = 1;
   late final List<Widget> _pages = [
