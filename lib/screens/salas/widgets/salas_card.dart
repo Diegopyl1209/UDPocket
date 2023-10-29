@@ -17,21 +17,20 @@ class SalasCard extends StatelessWidget {
       color: cardColor,
       margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _buildHeader(context, iconData, containerColor),
-          const SizedBox(width: 15),
+          const SizedBox(height: 15),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: placeInfo,
             ),
           ),
-          const SizedBox(width: 15),
-          _buildSectionAndDayInfo(sala),
+          const SizedBox(height: 15),
+          _buildSectionAndDayInfo(sala, containerColor),
         ],
       ),
     );
@@ -45,7 +44,7 @@ class SalasCard extends StatelessWidget {
       case "AYU":
         return const Color(0xff248484);
       default:
-        return Colors.grey;
+        return const Color(0xff3362CC);
     }
   }
 
@@ -70,14 +69,13 @@ class SalasCard extends StatelessWidget {
     if (sala.place != null &&
         sala.place!.toLowerCase() != 'sim' &&
         sala.place!.contains('.')) {
-      // QUE ES LOC ????
       final placeParts = sala.place?.split('.');
       return [
-        _buildInfoContainer("Calle: ", placeParts?[0] ?? '', colorContainer),
-        const SizedBox(width: 15),
-        _buildInfoContainer("Piso: ", placeParts?[1] ?? '', colorContainer),
-        const SizedBox(width: 15),
-        _buildInfoContainer("Sala: ", placeParts?[2] ?? '', colorContainer),
+        _buildInfoContainer("Edificio: ", placeParts![0], colorContainer),
+        //const SizedBox(width: 15),
+        _buildInfoContainer("Piso: ", placeParts[1], colorContainer),
+        //const SizedBox(width: 15),
+        _buildInfoContainer("Sala: ", placeParts[2], colorContainer),
       ];
     } else {
       return [_buildInfoContainer("Lugar: ", sala.place ?? '', colorContainer)];
@@ -117,6 +115,7 @@ class SalasCard extends StatelessWidget {
               child: Text(
                 sala.course ?? '',
                 overflow: TextOverflow.ellipsis,
+                maxLines: 2,
                 softWrap: true,
                 style: const TextStyle(
                   color: Colors.white,
@@ -126,9 +125,13 @@ class SalasCard extends StatelessWidget {
               ),
             ),
             Container(
+              width: MediaQuery.of(context).size.width / 1.5,
               alignment: Alignment.centerLeft,
               child: Text(
-                sala.code ?? '',
+                "${sala.code ?? ''} • ${sala.teacher ?? ''}",
+                overflow: TextOverflow.ellipsis,
+                maxLines: 2,
+                softWrap: true,
                 style: const TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.normal,
@@ -175,7 +178,7 @@ class SalasCard extends StatelessWidget {
     );
   }
 
-  Widget _buildSectionAndDayInfo(NodeSala sala) {
+  Widget _buildSectionAndDayInfo(NodeSala sala, Color colorContainer) {
     String _getDayName(int day) {
       switch (day) {
         case 1:
@@ -197,69 +200,24 @@ class SalasCard extends StatelessWidget {
       }
     }
 
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        const SizedBox(width: 15),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                "Sección",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 15,
-                ),
-              ),
-              Container(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  sala.section ?? '',
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.normal,
-                    fontSize: 15,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-        const SizedBox(width: 15),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                "Día",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 15,
-                ),
-              ),
-              Container(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  _getDayName(sala.day ?? -1),
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.normal,
-                    fontSize: 15,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ],
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          //const SizedBox(width: 15),
+          _buildInfoContainer("Sección: ", sala.section ?? '', Colors.blue),
+          //const SizedBox(width: 15),
+          //_buildInfoContainer("Día: ", _getDayName(sala.day ?? 0), Colors.blue),
+          //const SizedBox(width: 5),
+          _buildInfoContainer("Inicio: ",
+              sala.start?.replaceFirst(":00", "") ?? '', colorContainer),
+          //const SizedBox(width: 15),
+          _buildInfoContainer("Termino: ",
+              sala.finish?.replaceFirst(":00", "") ?? '', colorContainer),
+        ],
+      ),
     );
   }
 }
